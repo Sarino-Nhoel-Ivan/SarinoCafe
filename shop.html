@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Sarino's Cafe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar">
+    <div class="logo">Sarino's Cafe</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="shop.html" class="active">Shop</a></li>
+        </ul>
+    </nav>
+
+    <!-- Cart Icon -->
+    <div class="cart" id="cart-icon">
+        🛒 <span class="cart-count" id="cart-count">0</span>
+        <div class="cart-dropdown" id="cart-dropdown">
+            <ul id="cart-items"></ul>
+            <div class="cart-total">Total: $<span id="cart-total">0.00</span></div>
+        </div>
+    </div>
+
+    <a href="contact.html" class="btn-contact">Contact Us</a>
+</header>
+
+<section class="gallery">
+    <h1 id="shop-heading">Our Coffee Collection</h1>
+    <div class="gallery-grid">
+        <div class="coffee-item">
+            <img src="americano1.jpg" alt="Americano">
+            <p>Americano - ₱150</p>
+            <button class="add-to-cart" data-name="Americano" data-price="3.50">Add to Cart</button>
+        </div>
+        <div class="coffee-item">
+            <img src="capuccino.jpg" alt="Cappuccino">
+            <p>Cappuccino - ₱210</p>
+            <button class="add-to-cart" data-name="Cappuccino" data-price="4.00">Add to Cart</button>
+        </div>
+        <div class="coffee-item">
+            <img src="spanish.jpg" alt="Spanish Latte">
+            <p>Spanish Latte - ₱250</p>
+            <button class="add-to-cart" data-name="Spanish Latte" data-price="4.50">Add to Cart</button>
+        </div>
+        <div class="coffee-item">
+            <img src="oreolatte.jpg" alt="Oreo Latte">
+            <p>Oreo Latte - ₱290</p>
+            <button class="add-to-cart" data-name="Oreo Latte" data-price="4.25">Add to Cart</button>
+        </div>
+        <div class="coffee-item">
+            <img src="redlatte.jpg" alt="Red Velvet Latte">
+            <p>Red Velvet Latte - ₱180</p>
+            <button class="add-to-cart" data-name="Red Velvet Latte" data-price="4.75">Add to Cart</button>
+        </div>
+        <div class="coffee-item">
+            <img src="espresso.jpg" alt="Espresso">
+            <p>Espresso - ₱100</p>
+            <button class="add-to-cart" data-name="Espresso" data-price="2.50">Add to Cart</button>
+        </div>
+        <div class="coffee-item">
+            <img src="chocolate.jpg" alt="Hot Chocolate">
+            <p>Hot Chocolate - ₱200</p>
+            <button class="add-to-cart" data-name="Hot Chocolate" data-price="3.00">Add to Cart</button>
+        </div>
+        <div class="coffee-item">
+            <img src="milk.jpg" alt="Hot Milk">
+            <p>Hot Milk - ₱150</p>
+            <button class="add-to-cart" data-name="Hot Milk" data-price="2.00">Add to Cart</button>
+        </div>
+        <div class="coffee-item">
+            <img src="hot-caramel-macchiato.jpg" alt="Caramel Macchiato">
+            <p>Caramel Macchiato - ₱290</p>
+            <button class="add-to-cart" data-name="Caramel Macchiato" data-price="4.80">Add to Cart</button>
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

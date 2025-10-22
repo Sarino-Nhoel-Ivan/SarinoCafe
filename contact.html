@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Sarino's Cafe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="navbar">
+    <div class="logo">Sarino's Cafe</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="shop.html">Shop</a></li>
+        </ul>
+    </nav>
+    <a href="contact.html" class="btn-contact">Contact Us</a>
+</header>
+<section class="contact-hero">
+    <div class="contact-overlay">
+        <div class="contact-content">
+            <h1>We’d Love to Hear From You</h1>
+            <p>Whether you have a question, feedback, or just want to say hello, we’re always happy to chat over coffee.</p>
+        </div>
+    </div>
+</section>
+<section class="contact-container">
+    <div class="contact-form">
+        <h2>Send Us a Message</h2>
+        <form action="#" method="post">
+            <!-- Name Field with Validation -->
+            <input 
+                type="text" 
+                name="name" 
+                placeholder="Your Name" 
+                pattern="[A-Za-z\s]+" 
+                title="Name must only contain letters and spaces." 
+                required>
+            
+            <!-- Email Field with Validation -->
+            <input 
+                type="email" 
+                name="email" 
+                placeholder="Your Email" 
+                title="Please enter a valid email address." 
+                required>
+            
+            <!-- Message Field -->
+            <textarea 
+                name="message" 
+                placeholder="Your Message" 
+                rows="5" 
+                required></textarea>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="btn-primary">Send Message</button>
+        </form>
+    </div>
+    <div class="contact-info">
+        <h2>Visit Us</h2>
+        <p><strong>Address:</strong> Pamantasan ng Cabuyao</p>
+        <p><strong>Email:</strong> cafesarino@gmail.com</p>
+        <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+        <h3>Opening Hours</h3>
+        <p>Mon - Fri: 7am - 7pm</p>
+        <p>Sat - Sun: 8am - 5pm</p>
+    </div>
+</section>
+<script src="script.js"></script>
+</body>
+</html>
