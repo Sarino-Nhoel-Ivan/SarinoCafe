@@ -2,6 +2,51 @@ document.addEventListener("DOMContentLoaded", function () {
     const colors = ["#6F4E37", "#CBB994", "#A67B5B", "#4B3832", "#D9B382"];
 
     // -------------------------------
+    // TOAST MODAL FUNCTIONALITY
+    // -------------------------------
+    function showToast(title, message, icon = "✅") {
+        // Remove existing toast if any
+        const existingToast = document.querySelector('.toast-modal');
+        if (existingToast) {
+            existingToast.remove();
+        }
+
+        // Create toast modal
+        const toast = document.createElement('div');
+        toast.className = 'toast-modal';
+        toast.innerHTML = `
+            <div class="toast-icon">${icon}</div>
+            <div class="toast-content">
+                <div class="toast-title">${title}</div>
+                <div class="toast-message">${message}</div>
+            </div>
+            <button class="toast-close" onclick="hideToast(this)">&times;</button>
+        `;
+
+        // Add to body
+        document.body.appendChild(toast);
+
+        // Show toast
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 100);
+
+        // Auto hide after 5 seconds
+        setTimeout(() => {
+            hideToast(toast.querySelector('.toast-close'));
+        }, 5000);
+    }
+
+    // Global function to hide toast
+    window.hideToast = function(closeButton) {
+        const toast = closeButton.closest('.toast-modal');
+        toast.classList.add('hide');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    };
+
+    // -------------------------------
     // MOBILE NAVIGATION TOGGLE
     // -------------------------------
     const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
@@ -117,6 +162,45 @@ document.addEventListener("DOMContentLoaded", function () {
     if (cartIcon) {
         cartIcon.addEventListener("click", function () {
             window.location.href = "checkout.html";
+        });
+    }
+
+    // -------------------------------
+    // FEEDBACK FORM SUBMISSION
+    // -------------------------------
+    const feedbackForm = document.getElementById('feedback-form');
+    if (feedbackForm) {
+        feedbackForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const rating = document.getElementById('rating').value;
+            
+            // Show success toast
+            showToast("Feedback Submitted!", `Thank you ${name} for your ${rating}-star feedback! We appreciate your input.`, "💬");
+            
+            // Reset form
+            feedbackForm.reset();
+        });
+    }
+
+    // -------------------------------
+    // CONTACT FORM SUBMISSION
+    // -------------------------------
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.querySelector('input[name="name"]').value;
+            
+            // Show success toast
+            showToast("Message Sent!", `Thank you ${name}! We'll get back to you soon.`, "📧");
+            
+            // Reset form
+            contactForm.reset();
         });
     }
 });

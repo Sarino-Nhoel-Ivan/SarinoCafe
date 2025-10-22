@@ -76,6 +76,7 @@
     </div>
 </div>
 
+<script src="script.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -88,27 +89,50 @@ document.addEventListener("DOMContentLoaded", function () {
     let total = 0;
     tbody.innerHTML = "";
 
-    // Populate the checkout table with cart items
-    cart.forEach(item => {
-        const subtotal = item.price * item.quantity;
-        total += subtotal;
-
-        tbody.innerHTML += `
+    // Check if cart is empty
+    if (cart.length === 0) {
+        tbody.innerHTML = `
             <tr>
-                <td>${item.name}</td>
-                <td>$${item.price.toFixed(2)}</td>
-                <td>${item.quantity}</td>
-                <td>$${subtotal.toFixed(2)}</td>
+                <td colspan="4" style="text-align: center; padding: 40px; color: #666;">
+                    <div style="font-size: 18px; margin-bottom: 10px;">🛒</div>
+                    <div>Your cart is empty</div>
+                    <div style="margin-top: 10px;">
+                        <a href="shop.html" style="color: #d4a373; text-decoration: none; font-weight: bold;">
+                            Browse our coffee collection →
+                        </a>
+                    </div>
+                </td>
             </tr>
         `;
-    });
+        document.getElementById("place-order").style.display = "none";
+    } else {
+        // Populate the checkout table with cart items
+        cart.forEach(item => {
+            const subtotal = item.price * item.quantity;
+            total += subtotal;
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>$${item.price.toFixed(2)}</td>
+                    <td>${item.quantity}</td>
+                    <td>$${subtotal.toFixed(2)}</td>
+                </tr>
+            `;
+        });
+    }
 
     totalDisplay.textContent = total.toFixed(2);
 
     // Show the order form modal when "Place Order" is clicked
     placeOrderButton.addEventListener("click", function () {
         if (cart.length === 0) {
-            alert("Your cart is empty. Please add items to your cart before placing an order.");
+            // Show toast instead of alert
+            if (typeof showToast === 'function') {
+                showToast("Empty Cart", "Please add items to your cart before placing an order.", "🛒");
+            } else {
+                alert("Your cart is empty. Please add items to your cart before placing an order.");
+            }
         } else {
             orderFormModal.style.display = "flex";
         }
@@ -118,10 +142,21 @@ document.addEventListener("DOMContentLoaded", function () {
     orderForm.addEventListener("submit", function (e) {
         e.preventDefault(); // Prevent default form submission
 
-        // Clear the cart and redirect to the home page with a success message
-        alert("Thank you for your order! Your order has been placed successfully.");
+        // Show success toast
+        if (typeof showToast === 'function') {
+            showToast("Order Placed Successfully!", "Thank you for your order! We'll prepare your coffee with care.", "☕");
+        } else {
+            alert("Thank you for your order! Your order has been placed successfully.");
+        }
+        
+        // Clear the cart
         localStorage.removeItem("cart");
-        window.location.href = "index.html";
+        
+        // Close modal and redirect after toast
+        setTimeout(() => {
+            orderFormModal.style.display = "none";
+            window.location.href = "index.html";
+        }, 2000);
     });
 });
 </script>
