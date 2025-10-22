@@ -2,6 +2,51 @@ document.addEventListener("DOMContentLoaded", function () {
     const colors = ["#6F4E37", "#CBB994", "#A67B5B", "#4B3832", "#D9B382"];
 
     // -------------------------------
+    // MOBILE NAVIGATION TOGGLE
+    // -------------------------------
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navMenu = document.querySelector('nav');
+    
+    if (mobileMenuToggle && navMenu) {
+        mobileMenuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+            
+            // Change hamburger icon
+            if (navMenu.classList.contains('active')) {
+                mobileMenuToggle.innerHTML = '✕';
+            } else {
+                mobileMenuToggle.innerHTML = '☰';
+            }
+        });
+        
+        // Close menu when clicking on a link
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.innerHTML = '☰';
+            });
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!mobileMenuToggle.contains(event.target) && !navMenu.contains(event.target)) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.innerHTML = '☰';
+            }
+        });
+        
+        // Close menu on window resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                navMenu.classList.remove('active');
+                mobileMenuToggle.innerHTML = '☰';
+            }
+        });
+    }
+
+    // -------------------------------
     // HEADING COLOR CHANGE
     // -------------------------------
     const homeHeading = document.querySelector(".hero-content h1");
